@@ -1,5 +1,5 @@
 # digestpp
-Experimental c++17 header-only message digest library.
+Experimental c++17 header-only message digest library. This fork makes the digestpp available for c++ 17
 
 Derived from cppcrypto in an attempt to devise a more modern yet flexible and universal C++ API for cryptographic hash functions.
 
