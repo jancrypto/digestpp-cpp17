@@ -87,7 +87,7 @@ namespace blake2_functions
 	inline void initX(std::array<uint32_t, 8>& H, size_t hs, size_t processed, size_t xoffset, uint32_t rhs)
 	{
 		memcpy(&H[0], blake2s_constants<void>::IV, 32);
-		H[0] ^= (rhs == std::numeric_limits<uint32_t>::max() ? static_cast<size_t>(32) : std::min(hs - processed, static_cast<size_t>(32)));
+		H[0] ^= (rhs == UINT_MAX ? static_cast<size_t>(32) : min(hs - processed, static_cast<size_t>(32)));
 		H[1] ^= 0x00000020;
 		H[2] ^= xoffset;
 		H[3] ^= 0x20000000;
@@ -97,7 +97,7 @@ namespace blake2_functions
 	inline void initX(std::array<uint64_t, 8>& H, size_t hs, size_t processed, size_t xoffset, uint64_t rhs)
 	{
 		memcpy(&H[0], blake2b_constants<void>::IV, 64);
-		H[0] ^= (rhs == std::numeric_limits<uint64_t>::max() ? static_cast<size_t>(64) : std::min(hs - processed, static_cast<size_t>(64)));
+		H[0] ^= (rhs == UINT_MAX ? static_cast<size_t>(64) : min(hs - processed, static_cast<size_t>(64)));
 		H[0] ^= 0x0000004000000000ULL;
 		H[1] ^= xoffset;
 		H[1] ^= rhs << 32;
@@ -205,7 +205,7 @@ public:
 		}
 		else if (pos < N / 8)
 		{
-			size_t to_copy = std::min(hs, N / 8 - pos);
+			size_t to_copy = min(hs, N / 8 - pos);
 			memcpy(hash, reinterpret_cast<unsigned char*>(H.data()) + pos, to_copy);
 			processed += to_copy;
 			pos += to_copy;
@@ -220,7 +220,7 @@ public:
 			total = N;
 			memset(&m[N / 8], 0, m.size() - N / 8);
 			transform(m.data(), 1, true);
-			pos = std::min(hs - processed, N / 8);
+			pos = min(hs - processed, N / 8);
 			memcpy(hash + processed, H.data(), pos);
 			processed += pos;
 		}

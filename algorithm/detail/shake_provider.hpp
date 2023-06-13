@@ -136,7 +136,7 @@ public:
 		}
 		else if (pos < r)
 		{
-			size_t to_copy = std::min(hs, r - pos);
+			size_t to_copy = min(hs, r - pos);
 			memcpy(hash, reinterpret_cast<unsigned char*>(A.data()) + pos, to_copy);
 			processed += to_copy;
 			pos += to_copy;
@@ -149,7 +149,7 @@ public:
 		{
 			if (processed)
 				sha3_functions::transform<R>(A.data());
-			pos = std::min(hs - processed, r);
+			pos = min(hs - processed, r);
 			memcpy(hash + processed, A.data(), pos);
 			processed += pos;
 		}

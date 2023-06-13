@@ -260,14 +260,14 @@ public:
 		}
 		else if (pos < N / 8)
 		{
-			size_t to_copy = std::min(hs, N / 8 - pos);
+			size_t to_copy = min(hs, N / 8 - pos);
 			memcpy(hash, reinterpret_cast<unsigned char*>(H.data()) + pos, to_copy);
 			processed += to_copy;
 			pos += to_copy;
 		}
 		while (processed < hs)
 		{
-			pos = std::min(hs - processed, N / 8);
+			pos = min(hs - processed, N / 8);
 			tweak[0] = 0;
 			tweak[1] = 255ULL << 56;
 			memcpy(&m[0], &total, 8);

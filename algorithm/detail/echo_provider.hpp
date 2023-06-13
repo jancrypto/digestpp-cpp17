@@ -246,7 +246,7 @@ private:
 			uint64_t counter = 0;
 			if (addedbits)
 			{
-				uint64_t delta = std::min(addtototal, static_cast<uint64_t>(block_bytes()));
+				uint64_t delta = min(addtototal, static_cast<uint64_t>(block_bytes()));
 				counter = total + (blk * block_bytes() + delta) * 8;
 				addtototal -= delta;
 

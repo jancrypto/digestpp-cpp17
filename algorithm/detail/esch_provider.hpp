@@ -133,7 +133,7 @@ public:
 		}
 		else if (pos < 16)
 		{
-			size_t to_copy = std::min(hss, 16 - pos);
+			size_t to_copy = min(hss, 16 - pos);
 			memcpy(hash, reinterpret_cast<unsigned char*>(H.data()) + pos, to_copy);
 			processed += to_copy;
 			pos += to_copy;
@@ -144,7 +144,7 @@ public:
 		{
 			if (!total)
 				esch_functions::sparkle(H, hs > 256 ? 8 : 6, hs > 256 ? 8 : 7);
-			pos = std::min(hss - processed, static_cast<size_t>(16));
+			pos = min(hss - processed, static_cast<size_t>(16));
 			memcpy(hash + processed, H.data(), pos);
 			processed += pos;
 			total = 0;
