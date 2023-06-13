@@ -1,5 +1,5 @@
 # digestpp
-**This fork makes the digestpp available for c++ 17**
+***This fork makes the digestpp available for c++ 17***
 
 Experimental c++17 header-only message digest library.
 
